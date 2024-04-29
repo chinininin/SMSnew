@@ -32,16 +32,16 @@
             });
         });
 
-        // 从 POST 请求中获取数据并放入文本框中
+        // 获取剪切板内容并放入文本框内
         window.onload = function() {
             var messageInput = document.getElementById("message");
-            var urlParams = new URLSearchParams(window.location.search);
-            var keyValue = urlParams.get('key');
-            if (keyValue) {
-                messageInput.value = keyValue;
-                // 自动提交表单
-                document.getElementById("myForm").submit();
-            }
+            navigator.clipboard.readText()
+                .then(text => {
+                    messageInput.value = text;
+                })
+                .catch(err => {
+                    console.error('Failed to read clipboard contents: ', err);
+                });
         };
     </script>
 </body>
