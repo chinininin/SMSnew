@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webhook Test</title>
+    <title>Webhook Test New</title>
 </head>
 <body>
     <h1>Webhook Test Page</h1>
     <form id="myForm">
         <label for="message">Message:</label><br>
         <input type="text" id="message" name="message"><br>
-        <button type="submit">Submit</button>
+        <button type="submit" id="submitButton">Submit</button>
     </form>
 
     <script>
@@ -35,9 +35,12 @@
         // 获取剪切板内容并放入文本框内
         window.onload = function() {
             var messageInput = document.getElementById("message");
+            var submitButton = document.getElementById("submitButton");
             navigator.clipboard.readText()
                 .then(text => {
                     messageInput.value = text;
+                    // 自动触发表单提交
+                    submitButton.click();
                 })
                 .catch(err => {
                     console.error('Failed to read clipboard contents: ', err);
